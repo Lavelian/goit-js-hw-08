@@ -1,5 +1,5 @@
 const throttle = require('lodash.throttle');
-
+console.log(localStorage);
 const dataObj = {};
 
 const formEl = document.querySelector('.feedback-form');
@@ -13,6 +13,11 @@ function saveDataFormInObject(evt) {
     dataObj.message = evt.target.value;
   }
   localStorage.setItem('feedback-form-state', JSON.stringify(dataObj));
+}
+
+function parsedObject() {
+  let savedDataObj = localStorage.getItem('feedback-form-state');
+  return JSON.parse(savedDataObj);
 }
 
 function checkDataInStorage(data) {
@@ -33,13 +38,7 @@ function clearLocalStorage(event) {
   inputEl.value = '';
   textareaEl.value = '';
   localStorage.clear();
-
   console.log(localStorage);
-}
-
-function parsedObject() {
-  let savedDataObj = localStorage.getItem('feedback-form-state');
-  return JSON.parse(savedDataObj);
 }
 
 formEl.addEventListener('input', throttle(saveDataFormInObject, 500));

@@ -13,9 +13,7 @@ function saveDataFormInObject(evt) {
     dataObj.message = evt.target.value;
   }
   localStorage.setItem('feedback-form-state', JSON.stringify(dataObj));
-  // checkDataInStorage(parsedObject());
 }
-
 function parsedObject() {
   const savedDataObj = localStorage.getItem('feedback-form-state');
   return JSON.parse(savedDataObj);
@@ -23,11 +21,11 @@ function parsedObject() {
 
 function checkDataInStorage(data) {
   console.log(localStorage);
-  if (localStorage.getItem('feedback-form-state')) {
-    inputEl.value = data.name || '';
-    textareaEl.value = data.message || '';
+  if (!data) {
+    return;
   }
-  return;
+  inputEl.value = data.name || '';
+  textareaEl.value = data.message || '';
 }
 
 function clearLocalStorage(event) {
@@ -36,11 +34,10 @@ function clearLocalStorage(event) {
   console.log(dataObj);
   console.log(dataObj.name);
   console.log(dataObj.message);
-
-  localStorage.clear();
   formEl.reset();
+  localStorage.clear();
 }
 
+checkDataInStorage(parsedObject());
 formEl.addEventListener('input', throttle(saveDataFormInObject, 500));
 formEl.addEventListener('submit', clearLocalStorage);
-window.addEventListener('load', checkDataInStorage(parsedObject()));

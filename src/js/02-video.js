@@ -9,6 +9,10 @@ const onPlay = function (data) {
 };
 player.on('timeupdate', throttle(onPlay, 600));
 
-let seconds = localStorage.getItem('videoplayer-current-time');
+let timeSeconds = localStorage.getItem('videoplayer-current-time');
 
-player.setCurrentTime(seconds);
+if (!timeSeconds) {
+  return;
+} else {
+  player.setCurrentTime(timeSeconds);
+}

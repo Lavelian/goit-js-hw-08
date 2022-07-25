@@ -15,8 +15,8 @@ function parsedObject() {
   }
 }
 
-function saveDataFormInObject(evt) {
-  dataObj[evt.target.name] = evt.target.value;
+function saveDataFormInObject(e) {
+  dataObj[e.target.name] = e.target.value;
   localStorage.setItem(STORAGE_KEY_FEEDBACK, JSON.stringify(dataObj));
 }
 
@@ -29,8 +29,8 @@ function checkDataInStorage(data) {
   }
 }
 
-function clearLocalStorage(evt) {
-  evt.preventDefault();
+function clearLocalStorage(e) {
+  e.preventDefault();
 
   console.log(dataObj);
   console.log(dataObj.email);

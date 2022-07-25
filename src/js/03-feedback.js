@@ -19,8 +19,8 @@ function parsedObject() {
 function checkDataInStorage(data) {
   console.log(localStorage);
   if (data) {
-    inputEl.value = data.email;
-    textareaEl.value = data.message;
+    inputEl.value = data.email || '';
+    textareaEl.value = data.message || '';
   }
 }
 
